@@ -1,0 +1,25 @@
+<launch>
+  <!-- launch baxter_gazebo -->
+  <!-- Spawn multiple cameras -->
+  <node name="spawn_kinect1" pkg="gazebo_ros" type="spawn_model" args="-file $(find baxter_mpnet_with_sensor)/gazebo/env/gazebo_models/kinect_ros/model1.sdf -sdf -x 3.302465 -y -0.560081 -z 1.917307 -Y -2.950699 -P 1.253748 -R -2.980416 -model kinect1"/>
+  <!-- Publish a static transform between the world and the camera -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="camera1_to_world" args="3.302465 -0.560081 1.917307 -2.950699 1.253748 -2.980416 world camera1_link" />
+  <!-- the camera optical frame will rotate w.r.t. the camera mounting frame (camera_link), by YPR = (-pi/2,0,-pi/2) -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="camera1_to_pcd" args="0 0 0 -1.5707963267948966 0 -1.5707963267948966 camera1_link camera1_optical_frame" />
+
+  <node name="spawn_kinect2" pkg="gazebo_ros" type="spawn_model" args="-file $(find baxter_mpnet_with_sensor)/gazebo/env/gazebo_models/kinect_ros/model2.sdf -sdf -x -0.629439 -y 0.760619 -z 2.639018 -Y 0.112265 -P 1.016560 -R 2.777470 -model kinect2"/>
+  <!-- Publish a static transform between the world and the camera -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="camera2_to_world" args="-0.629439 0.760619 2.639018 0.112265 1.016560 2.777470 world camera2_link" />
+  <!-- the camera optical frame will rotate w.r.t. the camera mounting frame (camera_link), by YPR = (-pi/2,0,-pi/2) -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="camera2_to_pcd" args="0 0 0 -1.5707963267948966 0 -1.5707963267948966 camera2_link camera2_optical_frame" />
+
+  <node name="spawn_kinect3" pkg="gazebo_ros" type="spawn_model" args="-file $(find baxter_mpnet_with_sensor)/gazebo/env/gazebo_models/kinect_ros/model3.sdf -sdf -x 0.939257 -y -2.584330 -z 1.635703 -Y 2.233696 -P 1.142417 -R -2.738714 -model kinect3"/>
+  <!-- Publish a static transform between the world and the camera -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="camera3_to_world" args="0.939257 -2.584330 1.635703 2.233696 1.142417 -2.738714 world camera3_link" />
+  <!-- the camera optical frame will rotate w.r.t. the camera mounting frame (camera_link), by YPR = (-pi/2,0,-pi/2) -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="camera3_to_pcd" args="0 0 0 -1.5707963267948966 0 -1.5707963267948966 camera3_link camera3_optical_frame" />
+
+  <!-- point cloud merger & self_filter -->
+  <node pkg="baxter_mpnet_with_sensor" type="point_cloud_merger.py" name='point_cloud_merger' />
+  <include file="$(find baxter_mpnet_with_sensor)/launch/self_filter.launch"/>
+</launch>

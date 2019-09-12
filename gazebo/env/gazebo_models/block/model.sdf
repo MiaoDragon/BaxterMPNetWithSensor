@@ -1,0 +1,83 @@
+<!-- ref: https://github.com/zengzhen/zhen_baxter_moveit -->
+<?xml version="1.0" ?>
+<sdf version="1.4">
+<model name="unit_box_0">
+  <pose>0 0 0 0 0 0</pose>
+  <!--<pose>0.867714 0.338958 0.833 0 0 0.866846</pose>-->
+  <static>false</static>
+  <link name="link">
+    <inertial>
+      <mass>0.2</mass>
+      <inertia> <!-- interias are tricky to compute -->
+        <!-- http://answers.gazebosim.org/question/4372/the-inertia-matrix-explained/ -->
+        <!-- for a box: ixx = 0.083 * mass * (y*y + z*z) -->
+        <!-- for a box: ixy = 0 -->
+        <!-- for a box: iyy = 0.083 * mass * (x*x + z*z) -->
+        <!-- for a box: ixz = 0 -->
+        <!-- for a box: izz = 0.083 * mass * (x*x + y*y) -->
+        <!-- for a box: iyz = 0 -->
+        <ixx>2.1248e-04</ixx>
+        <ixy>0.0</ixy>
+        <ixz>0.0</ixz>
+        <iyy>1.3149e-04</iyy>
+        <iyz>0.0</iyz>
+        <izz>1.3149e-04</izz>
+
+      </inertia>
+    </inertial>
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.025 0.08 0.08</size>
+        </box>
+      </geometry>
+      <surface>
+<!--						<bounce>
+          <restitution_coefficient>0.01</restitution_coefficient>
+          <threshold>0</threshold>
+        </bounce>-->
+<!--						<contact>
+          <ode>
+            <max_vel>0.001</max_vel>
+          </ode>
+        </contact>-->
+        <contact>
+          <ode>
+            <soft_cfm>0.2</soft_cfm>
+            <soft_erp>0.2</soft_erp>
+            <kp>1e5</kp>
+            <kd>1.0</kd>
+          </ode>
+        </contact>
+
+        <friction>
+          <ode>
+            <mu>1e10</mu>
+            <mu2>1e10</mu2>
+            <fdir1>0.000000 0.000000 1.000000</fdir1>
+          </ode>
+        </friction>
+        <contact>
+          <ode>
+            <max_vel>0.1</max_vel>
+            <min_depth>0.001</min_depth>
+          </ode>
+        </contact>
+      </surface>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.025 0.08 0.08</size>
+        </box>
+      </geometry>
+      <material>
+        <script>
+          <uri>file://media/materials/scripts/gazebo.material</uri>
+          <name>Gazebo/Blue</name>
+        </script>
+      </material>
+    </visual>
+  </link>
+</model>
+</sdf>

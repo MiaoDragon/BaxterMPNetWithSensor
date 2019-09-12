@@ -1,0 +1,8 @@
+<launch>
+  <!-- if using gazebo, launch baxter_gazebo -->
+  <!-- use sensor information -->
+  <!-- MoveIt planner -->
+  <node name='enable_robot' pkg='baxter_tools' type='enable_robot.py' args='-e' />
+  <node name="action_server" pkg="baxter_interface" type="joint_trajectory_action_server.py" />
+  <include file="$(find baxter_mpnet_with_sensor)/launch/baxter_grippers.launch"/>
+  </launch>

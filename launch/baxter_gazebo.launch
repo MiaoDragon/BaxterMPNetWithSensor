@@ -1,0 +1,26 @@
+<launch>
+  <!-- adding sensor information -->
+  <arg name="paused" default="false"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="false"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <include file="$(find baxter_mpnet_with_sensor)/launch/baxter_world.launch">
+    <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_to_world" args="0 0 0 0 0 0 world map" />
+
+
+  <node name="spawn_right_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find baxter_mpnet_with_sensor)/gazebo/env/gazebo_models/MPNet_TableRight/model.sdf -sdf -model MPNet_TableRight"/>
+  <node name="spawn_center_table" pkg="gazebo_ros" type="spawn_model" args="-file $(find baxter_mpnet_with_sensor)/gazebo/env/gazebo_models/MPNet_TableCenter/model.sdf -sdf -model MPNet_TableCenter"/>
+
+  <!--<include file="pcd_to_voxel.launch" />-->
+
+</launch>

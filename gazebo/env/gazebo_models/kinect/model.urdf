@@ -1,0 +1,68 @@
+<robot name='camera' xmlns:xacro="http://ros.org/wiki/xacro">
+    <static>true</static> <!--keep in one place -->
+    <pose>0 0 0.036 0 0 0</pose>
+    <link name="world"/>
+    <link name="camera_link">
+      <inertial>
+        <mass value='0.1' />
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+      </inertial>
+      <collision>
+        <geometry>
+          <box size="0.073000 0.276000 0.072000" />
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh filename="model://kinect_ros/meshes/kinect.dae" />
+        </geometry>
+      </visual>
+    </link>
+    <joint name="camera_joint" type="fixed">
+      <parent link="world"/>
+      <child link="camera_link"/>
+    </joint>
+    <gazebo reference="camera_link">
+      <sensor name="camera" type="depth">
+        <update_rate>20</update_rate>
+        <camera>
+          <horizontal_fov>2</horizontal_fov> <!--default is 1.047198 -->
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>3</far>
+          </clip>
+        </camera>
+        <plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
+          <baseline>0.2</baseline>
+          <alwaysOn>true</alwaysOn>
+          <!-- Keep this zero, update_rate in the parent <sensor> tag
+            will control the frame rate. -->
+          <updateRate>0.0</updateRate>
+          <cameraName>camera_ir</cameraName>
+          <imageTopicName>/camera/depth/image_raw</imageTopicName>
+          <cameraInfoTopicName>/camera/depth/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+          <depthImageInfoTopicName>/camera/depth/camera_info</depthImageInfoTopicName>
+          <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+          <broadcastTF>true</broadcastTF>
+          <frameName>camera_link</frameName>
+          <pointCloudCutoff>1</pointCloudCutoff>
+          <distortionK1>0</distortionK1>
+          <distortionK2>0</distortionK2>
+          <distortionK3>0</distortionK3>
+          <distortionT1>0</distortionT1>
+          <distortionT2>0</distortionT2>
+          <CxPrime>0</CxPrime>
+          <Cx>0</Cx>
+          <Cy>0</Cy>
+          <focalLength>0</focalLength>
+          <hackBaseline>0</hackBaseline>
+        </plugin>
+      </sensor>
+    </gazebo>
+</robot>

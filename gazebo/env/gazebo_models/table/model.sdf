@@ -1,0 +1,136 @@
+<!-- ref: https://github.com/zengzhen/zhen_baxter_moveit -->
+<?xml version="1.0" ?>
+<sdf version="1.4">
+<model name="table">
+    <pose>0 0.0 0 0 0 0</pose>
+    <static>true</static>
+    <link name="link">
+      <collision name="surface">
+        <pose>0 0 0.778 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.7 2.0 0.03</size>
+          </box>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>10</mu>
+              <mu2>10</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual1">
+        <pose>0 0 0.778 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.7 2.0 0.03</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Wood</name>
+          </script>
+        </material>
+      </visual>
+      <collision name="front_left_leg">
+        <pose>0.3 0.95 0.3815 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.763</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="front_left_leg">
+        <pose>0.3 0.95 0.3815 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.763</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+      <collision name="front_right_leg">
+        <pose>0.3 -0.95 0.3815 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.763</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="front_right_leg">
+        <pose>0.3 -0.95 0.3815 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.763</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+      <collision name="back_right_leg">
+        <pose>-0.3 -0.95 0.3815 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.763</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="back_right_leg">
+        <pose>-0.3 -0.95 0.3815 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.763</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+      <collision name="back_left_leg">
+        <pose>-0.3 0.95 0.3815 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.763</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="back_left_leg">
+        <pose>-0.3 0.95 0.3815 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.763</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+</model>
+</sdf>

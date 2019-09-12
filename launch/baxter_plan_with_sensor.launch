@@ -1,0 +1,15 @@
+<launch>
+  <!-- if using gazebo, launch baxter_gazebo -->
+  <!-- use sensor information -->
+  <node name='enable_robot' pkg='baxter_tools' type='enable_robot.py' args='-e' />
+  <group ns="move_group" >
+    <rosparam command="load" file="$(find baxter_mpnet_with_sensor)/gazebo/env/gazebo_models/kinect_ros/kinect_ros.yaml" />
+    <param name="octomap_frame" type="string" value="odom_combined" />
+    <param name="octomap_resolution" type="double" value="0.05" />
+    <param name="max_range" type="double" value="5.0" />
+  </group>
+
+  <!-- MoveIt planner -->
+  <node name="action_server" pkg="baxter_interface" type="joint_trajectory_action_server.py" />
+  <include file="$(find baxter_mpnet_with_sensor)/launch/baxter_grippers.launch"/>
+  </launch>

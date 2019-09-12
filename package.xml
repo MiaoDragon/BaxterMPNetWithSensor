@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package>
+  <name>baxter_mpnet_with_sensor</name>
+  <version>1.2.0</version>
+  <description>
+    Use MPNet in Baxter with perception.
+  </description>
+
+  <maintainer email="y2miao@eng.ucsd.edu">
+    Yinglong Miao
+  </maintainer>
+  <license>BSD</license>
+  <author>Yinglong Miao</author>
+
+</package>
