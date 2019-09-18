@@ -12,4 +12,5 @@
   <!-- MoveIt planner -->
   <node name="action_server" pkg="baxter_interface" type="joint_trajectory_action_server.py" />
   <include file="$(find baxter_mpnet_with_sensor)/launch/baxter_grippers.launch"/>
+  <remap from="joint_states" to="robot/joint_states" />
   </launch>

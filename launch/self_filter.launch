@@ -3,7 +3,7 @@
 <node pkg='robot_self_filter' type='self_filter' name='baxter_filter' args='cloud_in:=/camera/depth/points_merged cloud_out:=/camera/depth/points_filtered' output="screen">
   <!--<param name='sensor_frame' value='camera_optical_frame'/>-->
   <param name="robot_description" textfile="$(find baxter_description)/urdf/baxter.urdf"/>
-  <rosparam command="load" file="$(find baxter_mpnet_with_sensor)/meta_data/baxter_links.yaml"/>
+  <rosparam command="load" file="$(find baxter_mpnet_with_sensor)/pc_generation/meta_data/baxter_links.yaml"/>
   <!--<param name="robot_description" command="$(find xacro)/xacro.py -"-"inorder $(find baxter_description)/urdf/baxter.urdf.xacro gazebo:=true"/>-->
 </node>
 
