@@ -1,0 +1,9 @@
+# ignore data and results
+data/**
+results/**
+
+# ignore intermediate files
+# ignore pyc files
+*.pyc
+# ipython checkpoints
+.ipynb_checkpoints
