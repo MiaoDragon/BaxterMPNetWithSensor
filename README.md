@@ -15,7 +15,9 @@ The pipeline of this project is the following:
       
     python pc_generation/gazebo_point_cloud_saver.py
       -- this uses the executable 'pointcloud_to_pcd' from PCL ROS package to store point cloud into pcd file
-         it loads the environment file in gazebo/env/environment_data         
+         it loads the environment file in gazebo/env/environment_data   
+    ```
+    
 2. generate paths using the saved point cloud
   This part loads the previously saved point clouds, and puts it in the MoveIt planning scene by using
   MoveIt built-in ROS package. See tutorial:
