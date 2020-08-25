@@ -6,13 +6,11 @@ The pipeline of this project is the following:
   by firstly filtering out nearby points, and then using robot_self_filter package
 
   To run this part in simulator, run the following:
-    ```
+    ```bash
     roslaunch baxter_gazebo.launch
     (make sure this step is successful until the info: Gravity compensation was turned off)
-    
     roslaunch gazebo_point_cloud_generation.launch
       -- this spawns multiple cameras in Gazebo environment, and set up point cloud merger and self_filter      
-      
     python pc_generation/gazebo_point_cloud_saver.py
       -- this uses the executable 'pointcloud_to_pcd' from PCL ROS package to store point cloud into pcd file
          it loads the environment file in gazebo/env/environment_data   
