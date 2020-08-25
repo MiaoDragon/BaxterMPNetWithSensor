@@ -6,7 +6,7 @@ The pipeline of this project is the following:
   by firstly filtering out nearby points, and then using robot_self_filter package
 
   To run this part in simulator, run the following:
-    ```bash
+    ```
     roslaunch baxter_gazebo.launch
     (make sure this step is successful until the info: Gravity compensation was turned off)
     roslaunch gazebo_point_cloud_generation.launch
